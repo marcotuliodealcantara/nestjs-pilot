@@ -1,18 +1,31 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PostsService } from './posts.service';
+import { Model } from 'mongoose';
 
 describe('PostsService', () => {
-  let service: PostsService;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [PostsService],
-    }).compile();
+  const execute = new PostsService(Model);
 
-    service = module.get<PostsService>(PostsService);
+  jest
+    .spyOn(execute, 'create');
+
+  it('should be defined', () => {
+    expect(execute).toBeDefined(); 
+  });
+
+  // create a new test case
+  it('should be defined', () => {
+    expect(execute.create).toBeDefined();
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(Model).toBeDefined();
   });
+
+  it('should be defined', () => {
+    expect(execute.findAll).toBeDefined();
+  });
+
+
+  
 });
